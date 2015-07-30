@@ -1,0 +1,29 @@
+<div id="layout-form">
+
+    <header class="layout-header">
+        <span class="logo">Pearch</span>
+    </header>
+
+    <div class="layout-body">
+
+        <form name="signInForm">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">@</div>
+                    <input type="email" ng-model="user.email" class="form-control" placeholder="Email" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></div>
+                    <input type="password" ng-model="user.password" class="form-control" placeholder="Password" required>
+                </div>
+            </div>
+            <div class="form-group form-btn-sign">
+                <button type="submit" class="btn btn-primary" ng-disabled="signInForm.$invalid" ng-click="signIn()">Sign in</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>

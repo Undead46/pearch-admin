@@ -1,0 +1,89 @@
+<!-- section main block -->
+<div class="layout section">
+    <h1>Dashboard</h1>
+</div>
+<!-- /section main block -->
+
+<!-- grid row -->
+<div class="row">
+
+    <!-- grid cell -->
+    <section class="col-md-6">
+
+        <!-- scraps block -->
+        <div class="panel panel-table panel-primary section">
+            <div class="panel-heading">Scraps</div>
+            <div class="panel-body table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th><a href="#"><i class="glyphicon glyphicon-chevron-down"></i> Name</a></th>
+                        <th><a href="#"><i class="glyphicon glyphicon-chevron-down"></i> Cities</a></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="scraps in dashbordData.scraps | limitTo: itemPerPage">
+                            <td><a ui-sref="scrapEdit({id: scraps.id})">{{scraps.name}}</a></td>
+                            <td>{{scraps.cities | quotesText}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /scraps block -->
+
+        <!-- users block -->
+        <div class="panel panel-table panel-primary section">
+            <div class="panel-heading">Users</div>
+            <div class="panel-body table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th><a href="#"><i class="glyphicon glyphicon-chevron-down"></i> Email</a></th>
+                            <th><a href="#"><i class="glyphicon glyphicon-chevron-down"></i> Username</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="users in dashbordData.users | limitTo: itemPerPage">
+                            <td>{{users.email}}</td>
+                            <td><a ui-sref="userEdit({id: users.id})">{{users.name}}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /users block -->
+
+    </section>
+    <!-- /grid cell -->
+
+    <!-- grid cell -->
+    <section class="col-md-6">
+
+        <!-- events block -->
+        <div class="panel panel-table panel-primary section">
+            <div class="panel-heading">Events</div>
+            <div class="panel-body">
+                <table class="table table-hover table-striped table-col-space">
+                    <thead>
+                        <tr>
+                            <th><a href="#"><i class="glyphicon glyphicon-chevron-down"></i> Name</a></th>
+                            <th><a href="#"><i class="glyphicon glyphicon-chevron-down"></i> Date start</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="events in dashbordData.events | limitTo: itemPerPage">
+                            <td>{{events.name}}</td>
+                            <td><a ui-sref="eventEdit({id: events.id})">{{events.dateStart | limitTo: 10}}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /events block -->
+
+    </section>
+    <!-- /grid cell -->
+
+</div>
+<!-- /grid row -->

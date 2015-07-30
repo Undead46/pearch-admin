@@ -1,0 +1,562 @@
+div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    font-size: 100%;
+}
+
+html,body {
+    height: 100%;
+}
+
+body {
+    font-size: 16px;
+    background-color: #e8ebf1;
+}
+
+input:not([type=submit]):not([type=button]) {
+    color: #666;
+}
+
+::-webkit-input-placeholder {
+    color: #666;
+}
+
+:-moz-placeholder {
+    color: #666;
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    color: #666;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    color: #666;
+}
+
+h1,.h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+h2,.h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+h3,.h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+h4,.h4 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+h5,.h5 {
+    font-size: 1em;
+    margin-bottom: 12px;
+}
+
+h6,.h6 {
+    font-size: 0.85em;
+    margin-bottom: 12px;
+}
+
+.glyphicon {
+    vertical-align: text-top;
+}
+
+textarea {
+    resize: none;
+}
+
+.table>thead>tr>th {
+    border-bottom: 1px solid #ccc;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th,
+.table>tfoot>tr>td, .table>tfoot>tr>th,
+.table>thead>tr>td, .table>thead>tr>th {
+    vertical-align: middle;
+}
+
+.table input {
+    margin: 0;
+}
+
+a,
+button,
+.table-hover>tbody>tr {
+    transition: color .3s ease, background .3s ease, border .3s ease;
+    text-decoration: none;
+}
+
+.table-hover>tbody>tr:hover {
+    background-color: #eee;
+}
+
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none;
+}
+
+/* -------- Wrapper --------- */
+
+#wrapper {
+    min-width: 320px;
+    position: relative;
+    margin: 0 auto;
+    min-height: 100%;
+}
+
+/* ------- /Wrapper --------- */
+
+/* ------- Header ---------- */
+
+#header {
+    z-index: 99;
+}
+
+.navbar-primary {
+    background-color: #fff;
+    border-radius: 0;
+    border: 0;
+    box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.1);
+    margin: 0;
+}
+
+.nav-group {
+    float: left;
+}
+
+.navbar-primary .navbar-brand {
+    font-size: 24px;
+    color: #fff;
+    width: 220px;
+    white-space: nowrap;
+    background-color: #337ab7;
+    overflow: hidden;
+    transform: translate3d(0,0,0);
+    transition: width .5s ease, background-color .3s ease;
+}
+
+.navbar-primary .navbar-brand span {
+    transform: translate3d(0,0,0);
+    transition: opacity .3s .3s ease;
+}
+
+.navbar-primary .navbar-brand:hover {
+    background-color: #286090;
+}
+
+.btn-hamburger {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 15px;
+    font-size: 20px;
+    height: 50px;
+    line-height: 50px;
+    color: #337ab7;
+    cursor: pointer;
+    transition: color .3s ease;
+}
+
+.btn-hamburger:hover {
+    color: #286090;
+}
+
+.nav-opened .navbar-primary .navbar-brand,
+.nav-opened #sidebar {
+    width: 45px;
+}
+
+.nav-opened .navbar-primary .navbar-brand span {
+    opacity: 0;
+}
+
+.nav-opened .main-container {
+    padding: 15px 15px 15px 60px;
+}
+/* ------- /Header --------- */
+
+/* ------- Sidebar --------- */
+
+#sidebar {
+    position: absolute;
+    top: 51px;
+    bottom: 0;
+    width: 220px;
+    box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #fff;
+    transform: translate3d(0,0,0);
+    transition: width .5s ease;
+    z-index: 99;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar ul li a {
+    display: block;
+    white-space: nowrap;
+    padding: 10px 15px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    transition: background-color .3s ease;
+}
+
+#sidebar ul li a i {
+    padding: 0 15px 0 0;
+    transition: color .3s ease;
+}
+
+#sidebar ul li a:hover,
+#sidebar ul .active a {
+    background-color: #e9ebf0;
+    color: #286090;
+}
+
+/* ------- /Sidebar -------- */
+
+/* ------- /Main ----------- */
+.main-container {
+    padding: 15px 15px 15px 235px;
+    transform: translate3d(0,0,0);
+    transition: padding .5s ease;
+}
+
+.full-width {
+    padding: 15px;
+}
+
+.main-container .layout {
+    background-color: #fff;
+    padding: 15px;
+}
+
+.layout > h1,
+.layout > .h1,
+.layout > h2,
+.layout > .h2,
+.layout > h3,
+.layout > .h3,
+.layout > h4,
+.layout > .h4,
+.layout > h5,
+.layout > .h5,
+.layout > h6,
+.layout > .h6,
+.layout > header h1,
+.layout > header .h1,
+.layout > header h2,
+.layout > header .h2,
+.layout > header h3,
+.layout > header .h3,
+.layout > header h4,
+.layout > header .h4,
+.layout > header h5,
+.layout > header .h5,
+.layout > header h6,
+.layout > header .h6 {
+    margin-top: 0;
+}
+
+.layout > header h1,
+.layout > header .h1,
+.layout > header h2,
+.layout > header .h2,
+.layout > header h3,
+.layout > header .h3,
+.layout > header h4,
+.layout > header .h4,
+.layout > header h5,
+.layout > header .h5,
+.layout > header h6,
+.layout > header .h6 {
+    float: left;
+    max-width: 65%;
+    margin-bottom: 0;
+}
+
+.layout > header {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.layout > header:after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+.main-container .section {
+    box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* ------- Main ------------ */
+
+/* ------- Login ----------- */
+#layout-form {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    margin-left: -300px;
+    width: 600px;
+    background-color: #fff;
+    box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.1);
+}
+
+.layout-header {
+    padding: 25px 15px;
+    background-color: #337ab7;
+    color: #fff;
+    font-size: 2.4em;
+    text-align: center;
+}
+
+.layout-body {
+    padding: 15px;
+}
+
+.form-btn-sign {
+    text-align: center;
+}
+
+.form-btn-sign .btn {
+    min-width: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+/* ------- /Login ---------- */
+
+/* -------- Dashboard ------ */
+.panel-table .panel-body {
+    padding: 0;
+}
+
+.panel-table .panel-body table {
+    margin: 0;
+}
+
+.panel-table .panel-heading {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.table-responsive {
+    margin-bottom: 20px;
+}
+
+.table-responsive .table {
+    margin-bottom: 0;
+}
+
+.table-col-space {
+    table-layout: fixed;
+}
+
+/* ------- /Dashboard ------ */
+
+/* ------- Scraps ---------- */
+.btn-section {
+    float: right;
+    max-width: 30%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.btn-section .btn {
+    margin-left: 5px;
+}
+
+.total {
+    text-align: right;
+}
+
+.total .pagination {
+    display: block;
+    margin: 0;
+    border-radius: 0;
+}
+
+.total .pagination > div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.total .pagination > div > span {
+    font-weight: bold;
+}
+
+.total .pagination > ul {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 15px;
+}
+/* ------- /Scraps --------- */
+
+@media screen and (max-width: 1200px) {
+
+}
+
+@media screen and (max-width: 990px) {
+
+    .navbar-primary .navbar-brand,
+    #sidebar {
+        width: 45px;
+    }
+
+    .navbar-primary .navbar-brand span {
+        opacity: 0;
+    }
+
+    .main-container {
+        padding: 15px 15px 15px 60px;
+    }
+
+    .nav-opened .navbar-primary .navbar-brand,
+    .nav-opened #sidebar {
+        width: 220px;
+    }
+
+    .nav-opened .navbar-primary .navbar-brand span {
+        opacity: 1;
+    }
+
+    navoverlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transform: translate3d(0,0,0);
+        background-color: rgba(0,0,0,0);
+        transition: background-color .3s ease;
+    }
+
+    .nav-opened navoverlay {
+        background-color: rgba(0,0,0,.5);
+    }
+
+    .full-width {
+        padding: 15px;
+    }
+
+    #layout-form {
+        width: 500px;
+        margin-left: -250px;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    #layout-form {
+        width: 390px;
+        margin-left: -195px;
+    }
+
+    .layout-header {
+        padding: 15px;
+        font-size: 2em;
+    }
+
+    .layout > header h1,
+    .layout > header .h1,
+    .layout > header h2,
+    .layout > header .h2,
+    .layout > header h3,
+    .layout > header .h3,
+    .layout > header h4,
+    .layout > header .h4,
+    .layout > header h5,
+    .layout > header .h5,
+    .layout > header h6,
+    .layout > header .h6 {
+        max-width: 40%;
+    }
+
+    .btn-section {
+        max-width: 55%;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+
+    #layout-form {
+        top: 30px;
+        width: 290px;
+        margin-left: -145px;
+    }
+
+    .layout-header {
+        padding: 10px 15px;
+        font-size: 2em;
+    }
+
+    .layout > header h1,
+    .layout > header .h1,
+    .layout > header h2,
+    .layout > header .h2,
+    .layout > header h3,
+    .layout > header .h3,
+    .layout > header h4,
+    .layout > header .h4,
+    .layout > header h5,
+    .layout > header .h5,
+    .layout > header h6,
+    .layout > header .h6 {
+        float: none;
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .btn-section {
+        float: none;
+        max-width: 100%;
+    }
+
+    .btn-section .btn:first-child {
+        margin-left: 0;
+    }
+
+    .total > span,
+    .total > nav {
+        display: block;
+    }
+
+    .total > nav {
+        display: block;
+        margin: 15px 0 0;
+    }
+
+    .pagination>li>a,
+    .pagination>li>span {
+        padding: 5px 10px;
+        white-space: nowrap;
+    }
+
+}

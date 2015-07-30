@@ -1,0 +1,44 @@
+<!-- section main block -->
+<div class="layout section">
+
+    <!-- header -->
+    <header>
+        <h1 class="title-border">Scrap config's list</h1>
+        <div class="btn-section">
+            <a class="btn btn-primary" href="#"><i class="glyphicon glyphicon-download"></i> Exports</a>
+        </div>
+    </header>
+    <!-- /header -->
+
+    <!-- table -->
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th><a href="#"><i class="glyphicon glyphicon-chevron-down"></i> ID</a></th>
+                <th><a href="#"><i class="glyphicon glyphicon-chevron-down"></i> Name</a></th>
+                <th><a href="#"><i class="glyphicon glyphicon-chevron-down"></i> Cities</a></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="scraps in itemData">
+                    <td><a ui-sref="scrapEdit({id: scraps.id})">{{scraps.id}}</a></td>
+                    <td>{{scraps.name}}</td>
+                    <td>{{scraps.cities | quotesText}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- /table -->
+
+    <!-- total -->
+    <div class="total" ng-controller="PaginationCtrl">
+        <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSizePage" items-per-page="itemPerPage" class="pagination"
+                    previous-text="&laquo; Prev" next-text="Next &raquo;" first-text="1" last-text="{{numPages}}"
+                    boundary-links="true" num-pages="numPages"></pagination>
+    </div>
+    <!-- /total -->
+
+
+</div>
+<!-- /section main block -->

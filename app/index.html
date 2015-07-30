@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Pearch</title>
+
+    <!-- style -->
+    <link rel="icon" type="image/png" href="img/ico.png" sizes="64x64">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+    <!-- script -->
+    <script src="modules/angular.min.js"></script>
+    <script src="modules/ui-router.js"></script>
+    <script src="modules/ui-bootstrap-custom-tpls-0.13.0.js"></script>
+    <script src="modules/angular-local-storage.min.js"></script>
+
+  </head>
+
+  <body ng-app="pearchAdmin" ng-controller="MainController">
+
+    <div id="wrapper" ui-view="loginView">
+
+      <!-- header -->
+      <headerbar ng-show="logined"></headerbar>
+      <!-- /header -->
+
+      <!-- main -->
+      <main id="main" ng-show="logined" role="main">
+
+        <!-- template -->
+        <div class="main-container" ui-view></div>
+        <!-- /template -->
+
+        <!-- sidebar -->
+        <sidebar></sidebar>
+        <!-- /sidebar -->
+
+      </main>
+      <!-- /main template -->
+
+    </div>
+
+    <!-- scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/login/login.js"></script>
+    <script src="js/login/login-ctrl.js"></script>
+    <script src="js/login/login-service.js"></script>
+    <script src="js/mainController.js"></script>
+    <script src="js/quotesFilter/quotesFilter.js"></script>
+    <script src="js/quotesFilter/quotesFilter-ctrl.js"></script>
+    <script src="js/pagination/pagination.js"></script>
+    <script src="js/pagination/pagination-ctrl.js"></script>
+    <script src="js/app-data/appData.js"></script>
+    <script src="js/app-data/appData-service.js"></script>
+    <script src="js/header-bar/header-bar.js"></script>
+    <script src="js/header-bar/header-bar-directives.js"></script>
+    <script src="js/sidebar/sidebar.js"></script>
+    <script src="js/sidebar/sidebar-directives.js"></script>
+    <script src="js/dashboard/dashboard.js"></script>
+    <script src="js/dashboard/dashboard-ctrl.js"></script>
+    <script src="js/scraps/scraps.js"></script>
+    <script src="js/scraps/scraps-ctrl.js"></script>
+    <script src="js/scraps/edit/scrap-edit.js"></script>
+    <script src="js/scraps/edit/scrap-edit-ctrl.js"></script>
+    <script src="js/events/events.js"></script>
+    <script src="js/events/events-ctrl.js"></script>
+    <script src="js/events/edit/event-edit.js"></script>
+    <script src="js/events/edit/event-edit-ctrl.js"></script>
+    <script src="js/events/create/event-create.js"></script>
+    <script src="js/events/create/event-create-ctrl.js"></script>
+    <script src="js/users/users.js"></script>
+    <script src="js/users/users-ctrl.js"></script>
+    <script src="js/users/edit/user-edit.js"></script>
+    <script src="js/users/edit/user-edit-ctrl.js"></script>
+    <script src="js/users/create/user-create.js"></script>
+    <script src="js/users/create/user-create-ctrl.js"></script>
+    <!-- /scripts -->
+  </body>
+</html>
