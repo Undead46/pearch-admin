@@ -14,6 +14,10 @@ angular.module('eventCreate')
                 hashtags: itemsData.hashtags
             };
 
+            $scope.itemsData.dateStart = new Date();
+            $scope.itemsData.dateEnd = new Date();
+
+
             $scope.saveChange = function() {
                 itemsData.push($scope.itemsData);
 

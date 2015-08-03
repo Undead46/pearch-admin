@@ -1,5 +1,5 @@
 angular.module('eventEdit')
-    .controller('EventEditCtrl', function ($scope, $state, AppData) {
+    .controller('EventEditCtrl', function ($scope, $state, $modal, AppData, modalConfirmService) {
         var itemsData = AppData.getData($state.params.parent),
             idItem = null;
 
@@ -9,17 +9,25 @@ angular.module('eventEdit')
             }
         });
 
-        $scope.itemsData = {
-            id: itemsData[idItem].id,
-            name: itemsData[idItem].name,
-            description: itemsData[idItem].description,
-            owner: itemsData[idItem].owner,
-            dateStart: itemsData[idItem].dateStart,
-            dateEnd: itemsData[idItem].dateEnd,
-            cover: itemsData[idItem].cover,
-            location: itemsData[idItem].location,
-            hashtags: itemsData[idItem].hashtags
-        };
+        $scope.itemsData = angular.copy(itemsData[idItem]);
+
+        $scope.eventDelete = function() {
+            modalConfirmService.setModalWarning(true);
+
+            var modal = $modal.open({
+                animation: true,
+                templateUrl: 'js/modal/modal-confirm.html',
+                controller: 'modalCtrl'
+            }).result.then(function(){
+                itemsData.splice(idItem, 1);
+                AppData.setData(itemsData, $state.params.parent);
+
+                $state.go($state.params.parent, {}, {
+                    reload: true
+                });
+            });
+
+        }
 
         $scope.saveChange = function() {
             itemsData[idItem] = $scope.itemsData;

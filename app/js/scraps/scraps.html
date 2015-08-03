@@ -11,17 +11,37 @@
     <!-- /header -->
 
     <!-- table -->
-    <div class="table-responsive">
+    <div class="table-responsive" ng-controller="TableSortCtrl">
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                    <input type="text" class="form-control" placeholder="Search" ng-model="tableSearch">
+                </div>
+            </div>
+        </form>
         <table class="table table-hover table-striped">
             <thead>
             <tr>
-                <th><a href="#"><i class="glyphicon glyphicon-chevron-down"></i> ID</a></th>
-                <th><a href="#"><i class="glyphicon glyphicon-chevron-down"></i> Name</a></th>
-                <th><a href="#"><i class="glyphicon glyphicon-chevron-down"></i> Cities</a></th>
+                <th><a ng-click="tableSort('id')">
+                    <i class="glyphicon glyphicon-chevron-down" ng-hide="sortType === 'id' && sortReverse"></i>
+                    <i class="glyphicon glyphicon-chevron-up" ng-show="sortType === 'id' && sortReverse"></i>
+                    ID</a>
+                </th>
+                <th><a ng-click="tableSort('name')">
+                    <i class="glyphicon glyphicon-chevron-down" ng-hide="sortType === 'name' && sortReverse"></i>
+                    <i class="glyphicon glyphicon-chevron-up" ng-show="sortType === 'name' && sortReverse"></i>
+                    Name</a>
+                </th>
+                <th><a ng-click="tableSort('cities')">
+                    <i class="glyphicon glyphicon-chevron-down" ng-hide="sortType === 'cities' && sortReverse"></i>
+                    <i class="glyphicon glyphicon-chevron-up" ng-show="sortType === 'cities' && sortReverse"></i>
+                    Cities</a>
+                </th>
             </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="scraps in itemData">
+                <tr ng-repeat="scraps in itemData | orderBy:sortType:sortReverse | filter: tableSearch">
                     <td><a ui-sref="scrapEdit({id: scraps.id})">{{scraps.id}}</a></td>
                     <td>{{scraps.name}}</td>
                     <td>{{scraps.cities | quotesText}}</td>

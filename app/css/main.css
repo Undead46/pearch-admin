@@ -97,6 +97,10 @@ textarea {
     margin: 0;
 }
 
+.table thead a {
+    cursor: pointer;
+}
+
 a,
 button,
 .table-hover>tbody>tr {
@@ -362,6 +366,14 @@ a:active {
     font-weight: bold;
 }
 
+.panel-table .panel-body form {
+    padding: 10px;
+}
+
+.panel-table .panel-body form .form-group {
+    margin: 0;
+}
+
 .table-responsive {
     margin-bottom: 20px;
 }
@@ -374,6 +386,17 @@ a:active {
     table-layout: fixed;
 }
 
+.form-horizontal .alert {
+    margin: 15px 0 0;
+}
+
+.form-horizontal .has-feedback .form-control-feedback {
+    right: 0;
+}
+
+.form-horizontal .has-feedback textarea.form-control + .form-control-feedback {
+    right: 15px;
+}
 /* ------- /Dashboard ------ */
 
 /* ------- Scraps ---------- */
@@ -413,6 +436,133 @@ a:active {
     margin-left: 15px;
 }
 /* ------- /Scraps --------- */
+
+/* ------- Events ---------- */
+.form-section {
+    display: table;
+    border-collapse: separate;
+}
+
+.form-section input,
+.form-section button {
+    vertical-align: top;
+    position: relative;
+}
+
+.form-section .btn input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    min-height: 100%;
+    text-align: right;
+    opacity: 0;
+    background: none repeat scroll 0 0 transparent;
+    cursor: inherit;
+    display: block;
+}
+
+.form-section .form-control-cover {
+    display: table-cell;
+    width: 100%;
+    text-align: left;
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+}
+
+.btn-file-group {
+    display: table-cell;
+    width: 1%;
+    font-size: 0;
+    vertical-align: top;
+    white-space: nowrap;
+}
+
+.btn-file-group .btn {
+    display: inline-block;
+    border-radius: 0 4px 4px 0;
+}
+/* ------- /Events --------- */
+
+/* ------- Modal ---------- */
+.modal.scale {
+    display: block;
+}
+
+.modal.scale .modal-dialog {
+    -webkit-transform: translate3d(0, -300px, 0) scale(0.1);
+    -moz-transform: translate3d(0, -300px, 0) scale(0.1);
+    -ms-transform: translate3d(0, -300px, 0) scale(0.1);
+    transform: translate3d(0, -300px, 0) scale(0.1);
+    opacity: 0;
+    -webkit-transition: transform 0.3s, opacity .3s ease;
+    -moz-transition: transform 0.3s, opacity .3s ease;
+    transition: transform 0.3s, opacity .3s ease;
+}
+
+.modal.scale.in .modal-dialog {
+    -webkit-transform: translate3d(0, 100px, 0) scale(1);
+    -moz-transform: translate3d(0, 100px, 0) scale(1);
+    -ms-transform: translate3d(0, 100px, 0) scale(1);
+    transform: translate3d(0, 100px, 0) scale(1);
+    opacity: 1;
+}
+
+.modal-dialog {
+    text-align: center;
+}
+
+.modal-dialog .modal-content,
+.modal-dialog .modal-header {
+    background-color: #337ab7;
+}
+
+.modal-dialog.warning .modal-content,
+.modal-dialog.warning .modal-header {
+    background-color: #c9302c;
+}
+
+.modal-dialog .modal-header {
+    color: #fff;
+    border-radius: 6px 6px 0 0;
+}
+
+.modal-dialog .modal-body,
+.modal-dialog .modal-footer {
+    background-color: #fff;
+}
+
+.modal-dialog .modal-footer {
+    border-radius: 0 0 6px 6px;
+}
+
+
+.modal-footer {
+    border-radius: 0 0 6px 6px;
+}
+
+.modal-footer button {
+    width: 100%;
+    font-size: 1.2em;
+}
+
+.modal-cancel {
+    padding: 0;
+}
+
+.modal-cancel button {
+    color: inherit;
+    margin-bottom: 0;
+    border-radius: 0 0 6px 6px;
+    transition: color .3s ease, background-color .3s ease;
+}
+
+.modal-cancel button:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #5cb85c;
+}
+/* ------- /Modal ---------- */
 
 @media screen and (max-width: 1200px) {
 

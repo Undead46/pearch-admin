@@ -6,7 +6,7 @@
  * License: MIT
  */
 angular.module("ui.bootstrap", ["ui.bootstrap.tpls","ui.bootstrap.collapse","ui.bootstrap.bindHtml","ui.bootstrap.dateparser","ui.bootstrap.dropdown","ui.bootstrap.position","ui.bootstrap.tooltip","ui.bootstrap.transition","ui.bootstrap.buttons","ui.bootstrap.modal","ui.bootstrap.popover","ui.bootstrap.alert","ui.bootstrap.datepicker","ui.bootstrap.pagination","ui.bootstrap.timepicker"]);
-angular.module("ui.bootstrap.tpls", ["template/tooltip/tooltip-html-popup.html","template/tooltip/tooltip-html-unsafe-popup.html","template/tooltip/tooltip-popup.html","template/tooltip/tooltip-template-popup.html","template/modal/backdrop.html","template/modal/window.html","template/popover/popover-template.html","template/popover/popover.html","template/alert/alert.html","template/datepicker/datepicker.html","template/datepicker/day.html","template/datepicker/month.html","template/datepicker/popup.html","template/datepicker/year.html","js/pagination/pager.html","js/pagination/pagination.html","template/timepicker/timepicker.html"]);
+angular.module("ui.bootstrap.tpls", ["template/tooltip/tooltip-html-popup.html","template/tooltip/tooltip-html-unsafe-popup.html","template/tooltip/tooltip-popup.html","template/tooltip/tooltip-template-popup.html","js/modal/backdrop.html","js/modal/window.html","template/popover/popover-template.html","template/popover/popover.html","js/alert/alert.html","template/datepicker/datepicker.html","template/datepicker/day.html","template/datepicker/month.html","template/datepicker/popup.html","template/datepicker/year.html","js/pagination/pager.html","js/pagination/pagination.html","template/timepicker/timepicker.html"]);
 angular.module('ui.bootstrap.collapse', [])
 
   .directive('collapse', ['$animate', function ($animate) {
@@ -1365,7 +1365,7 @@ angular.module('ui.bootstrap.modal', [])
     return {
       restrict: 'EA',
       replace: true,
-      templateUrl: 'template/modal/backdrop.html',
+      templateUrl: 'js/modal/backdrop.html',
       compile: function (tElement, tAttrs) {
         tElement.addClass(tAttrs.backdropClass);
         return linkFn;
@@ -1392,7 +1392,7 @@ angular.module('ui.bootstrap.modal', [])
       replace: true,
       transclude: true,
       templateUrl: function(tElement, tAttrs) {
-        return tAttrs.templateUrl || 'template/modal/window.html';
+        return tAttrs.templateUrl || 'js/modal/window.html';
       },
       link: function (scope, element, attrs) {
         element.addClass(attrs.windowClass || '');
@@ -1411,6 +1411,8 @@ angular.module('ui.bootstrap.modal', [])
         // We can detect that by using this property in the template associated with this directive and then use
         // {@link Attribute#$observe} on it. For more details please see {@link TableColumnResize}.
         scope.$isRendered = true;
+
+        scope.isDelete = scope.$parent.isDelete;
 
         // Deferred object that will be resolved when this modal is render.
         var modalRenderDeferObj = $q.defer();
@@ -1527,32 +1529,39 @@ angular.module('ui.bootstrap.modal', [])
       }
 
       function removeAfterAnimate(domEl, scope, done) {
-        // Closing animation
-        scope.animate = false;
 
-        if (domEl.attr('modal-animation') && $animate.enabled()) {
-          // transition out
-          domEl.one('$animate:close', function closeFn() {
-            $rootScope.$evalAsync(afterAnimating);
-          });
-        } else {
-          // Ensure this call is async
-          $timeout(afterAnimating);
-        }
+              // Closing animation
+              scope.animate = false;
+              var delay = 300;
 
-        function afterAnimating() {
-          if (afterAnimating.done) {
-            return;
-          }
-          afterAnimating.done = true;
+              domEl.removeClass('in');
 
-          domEl.remove();
-          scope.$destroy();
-          if (done) {
-            done();
-          }
-        }
-      }
+              if (domEl.attr('modal-animation') && $animate.enabled()) {
+                // transition out
+                domEl.one('$animate:close', function closeFn() {
+                  $rootScope.$evalAsync(afterAnimating);
+                });
+              } else {
+                // Ensure this call is async
+                $timeout(afterAnimating);
+              }
+
+              function afterAnimating() {
+                if (afterAnimating.done) {
+                  return;
+                }
+                afterAnimating.done = true;
+                $timeout(function(){
+                  domEl.remove();
+                },delay);
+
+
+                scope.$destroy();
+                if (done) {
+                  done();
+                }
+              }
+            }
 
       $document.bind('keydown', function (evt) {
         var modal;
@@ -1825,7 +1834,7 @@ angular.module('ui.bootstrap.alert', [])
   return {
     restrict:'EA',
     controller:'AlertController',
-    templateUrl:'template/alert/alert.html',
+    templateUrl:'js/alert/alert.html',
     transclude:true,
     replace:true,
     scope: {
@@ -3175,22 +3184,22 @@ angular.module("template/tooltip/tooltip-template-popup.html", []).run(["$templa
     "");
 }]);
 
-angular.module("template/modal/backdrop.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("template/modal/backdrop.html",
+angular.module("js/modal/backdrop.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("js/modal/backdrop.html",
     "<div class=\"modal-backdrop\"\n" +
     "     modal-animation-class=\"fade\"\n" +
     "     ng-class=\"{in: animate}\"\n" +
-    "     ng-style=\"{'z-index': 1040 + (index && 1 || 0) + index*10}\"\n" +
     "></div>\n" +
     "");
 }]);
 
-angular.module("template/modal/window.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("template/modal/window.html",
+angular.module("js/modal/window.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("js/modal/window.html",
     "<div modal-render=\"{{$isRendered}}\" tabindex=\"-1\" role=\"dialog\" class=\"modal\"\n" +
-    "    modal-animation-class=\"fade\"\n" +
-    "	ng-class=\"{in: animate}\" ng-style=\"{'z-index': 1050 + index*10, display: 'block'}\" ng-click=\"close($event)\">\n" +
-    "    <div class=\"modal-dialog\" ng-class=\"size ? 'modal-' + size : ''\"><div class=\"modal-content\" modal-transclude></div></div>\n" +
+    "     modal-animation-class=\"scale\"\n" +
+    "   ng-class=\"{in: animate}\" ng-click=\"close($event)\">\n" +
+    "    <div class=\"modal-dialog\" ng-class=\"{warning: isDelete}\">\n" +
+    "       <div class=\"modal-content\" modal-transclude></div></div>\n" +
     "</div>\n" +
     "");
 }]);
@@ -3242,8 +3251,8 @@ angular.module("template/popover/popover.html", []).run(["$templateCache", funct
     "");
 }]);
 
-angular.module("template/alert/alert.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("template/alert/alert.html",
+angular.module("js/alert/alert.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("js/alert/alert.html",
     "<div class=\"alert\" ng-class=\"['alert-' + (type || 'warning'), closeable ? 'alert-dismissable' : null]\" role=\"alert\">\n" +
     "    <button ng-show=\"closeable\" type=\"button\" class=\"close\" ng-click=\"close()\">\n" +
     "        <span aria-hidden=\"true\">&times;</span>\n" +

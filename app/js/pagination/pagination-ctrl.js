@@ -3,6 +3,4 @@ angular.module('pagination')
         $scope.totalItems = $scope.itemData.length;
         $scope.currentPage = 1;
         $scope.maxSizePage = 4;
-
-        console.log($scope);
     });

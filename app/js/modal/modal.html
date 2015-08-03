@@ -1,0 +1,13 @@
+<header class="modal-header">
+    <h1 class="modal-title">Location</h1>
+</header>
+<div class="modal-body" ng-controller="modalMapCtrl">
+    <map center="37.09024, -95.712891" zoom="4" on-click="addCoordinate()">
+        <marker position="{{coordinate}}"></marker>
+    </map>
+</div>
+<footer class="modal-footer">
+    <div class="col-xs-6"><button class="btn btn-success" ng-click="save()"><i class="glyphicon glyphicon-saved"></i> Save</button></div>
+    <div class="col-xs-6"><button class="btn btn-danger" ng-click="cancel()"><i class="glyphicon glyphicon-ban-circle"></i> Cancel</button></div>
+</footer>
+

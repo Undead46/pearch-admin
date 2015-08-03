@@ -12,28 +12,56 @@
     <!-- /header -->
 
     <!-- table -->
-    <div class="table-responsive">
+    <div class="table-responsive" ng-controller="TableSortCtrl">
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                    <input type="text" class="form-control" placeholder="Search" ng-model="tableSearch">
+                </div>
+            </div>
+        </form>
         <table class="table table-hover table-striped">
             <thead>
             <tr>
                 <th><input type="checkbox"></th>
-                <th><a href="#"><i class="glyphicon glyphicon-chevron-down"></i> ID</a></th>
-                <th><a href="#"><i class="glyphicon glyphicon-chevron-down"></i> Email</a></th>
-                <th><a href="#"><i class="glyphicon glyphicon-chevron-down"></i> Name</a></th>
-                <th><a href="#"><i class="glyphicon glyphicon-chevron-down"></i> Date created</a></th>
-                <th><a href="#"><i class="glyphicon glyphicon-chevron-down"></i> Points</a></th>
+                <th><a ng-click="tableSort('id')">
+                    <i class="glyphicon glyphicon-chevron-down" ng-hide="sortType === 'id' && sortReverse"></i>
+                    <i class="glyphicon glyphicon-chevron-up" ng-show="sortType === 'id' && sortReverse"></i>
+                    ID</a>
+                </th>
+                <th><a ng-click="tableSort('email')">
+                    <i class="glyphicon glyphicon-chevron-down" ng-hide="sortType === 'email' && sortReverse"></i>
+                    <i class="glyphicon glyphicon-chevron-up" ng-show="sortType === 'email' && sortReverse"></i>
+                    Email</a>
+                </th>
+                <th><a ng-click="tableSort('name')">
+                    <i class="glyphicon glyphicon-chevron-down" ng-hide="sortType === 'name' && sortReverse"></i>
+                    <i class="glyphicon glyphicon-chevron-up" ng-show="sortType === 'name' && sortReverse"></i>
+                    Name</a>
+                </th>
+                <th><a ng-click="tableSort('dateCreate')">
+                    <i class="glyphicon glyphicon-chevron-down" ng-hide="sortType === 'dateCreate' && sortReverse"></i>
+                    <i class="glyphicon glyphicon-chevron-up" ng-show="sortType === 'dateCreate' && sortReverse"></i>
+                    Date created</a>
+                </th>
+                <th><a ng-click="tableSort('point')">
+                    <i class="glyphicon glyphicon-chevron-down" ng-hide="sortType === 'point' && sortReverse"></i>
+                    <i class="glyphicon glyphicon-chevron-up" ng-show="sortType === 'point' && sortReverse"></i>
+                    Points</a>
+                </th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="users in itemData">
+                <tr ng-repeat="users in itemData | orderBy:sortType:sortReverse | filter: tableSearch">
                     <td><input type="checkbox" ng-model="inputSelect"></td>
                     <td>{{users.id}}</td>
                     <td>{{users.email}}</td>
                     <td><a ui-sref="userEdit({id: users.id})">{{users.name}}</a></td>
-                    <td>{{users.dateCreate | limitTo: 10}}</td>
+                    <td>{{users.dateCreate | date: 'MM/dd/yyyy h:mma Z' | limitTo: 10}}</td>
                     <td>{{users.point}}</td>
-                    <td><button class="btn btn-danger" ng-click = "userDelete($index)"><i class="glyphicon glyphicon-trash"></i> Delete</button></td>
+                    <td><button class="btn btn-danger" ng-click = "userDelete(users)"><i class="glyphicon glyphicon-trash"></i> Delete</button></td>
                 </tr>
             </tbody>
         </table>

@@ -5,13 +5,13 @@
     <header>
         <h1 class="title-border">Event edit</h1>
         <div class="btn-section">
-            <a class="btn btn-danger" href="#"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+            <a class="btn btn-danger" ng-click="eventDelete()"><i class="glyphicon glyphicon-trash"></i> Delete</a>
             <a class="btn btn-primary" ui-sref="events"><i class="glyphicon glyphicon-th-list"></i> List</a>
         </div>
     </header>
     <!-- /header -->
 
-    <form class="form-horizontal">
+    <form class="form-horizontal" name="eventEdit" ng-controller="DatePickerCtrl">
 
         <div class="form-group">
             <label for="name" class="col-sm-2 control-label">Name</label>
@@ -22,37 +22,53 @@
         <div class="form-group">
             <label for="description" class="col-sm-2 control-label">Description</label>
             <div class="col-sm-8">
-                <textarea id="description" class="form-control" rows="3" ng-model="itemsData.description">{{itemsData.description}}</textarea>
+                <textarea id="description" class="form-control" rows="3" ng-model="itemsData.description" validator="required">{{itemsData.description}}</textarea>
             </div>
         </div>
         <div class="form-group">
             <label for="owner" class="col-sm-2 control-label">Owner</label>
             <div class="col-sm-8">
-                <input type="text" id="owner" class="form-control" ng-model="itemsData.owner" value="{{itemsData.owner}}">
+                <input type="text" id="owner" class="form-control" ng-model="itemsData.owner" validator="required" value="{{itemsData.owner}}">
             </div>
         </div>
         <div class="form-group">
             <label for="date-start" class="col-sm-2 control-label">Date start</label>
             <div class="col-sm-8">
-                <input type="text" id="date-start" class="form-control" ng-model="itemsData.dateStart" value="{{itemsData.dateStart}}">
+                <input type="text" id="date-start" datetime-picker="MM/dd/yyyy h:mma Z" is-open="isStartCalendarOpen" ng-click="openStartCalendar($event)" class="form-control" ng-model="itemsData.dateStart" value="{{itemsData.dateStart | date: 'MM/dd/yyyy h:mma Z'}}">
             </div>
         </div>
         <div class="form-group">
             <label for="date-end" class="col-sm-2 control-label">Date end</label>
             <div class="col-sm-8">
-                <input type="text" id="date-end" class="form-control" ng-model="itemsData.dateEnd" value="{{itemsData.dateEnd}}">
+                <input type="text" id="date-end" datetime-picker="MM/dd/yyyy h:mma Z" is-open="isEndCalendarOpen" ng-click="openEndCalendar($event)" class="form-control" ng-model="itemsData.dateEnd" value="{{itemsData.dateEnd | date: 'MM/dd/yyyy h:mma Z'}}">
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-controller="uploadCoverCtrl">
             <label for="cover" class="col-sm-2 control-label">Cover </label>
             <div class="col-sm-8">
-                <input type="text" id="cover" class="form-control" ng-model="itemsData.cover" value="{{itemsData.cover}}">
+
+                <div class="btn-group form-section" role="group">
+
+                    <input type="text" id="cover" class="form-control form-control-cover" ng-model="itemsData.cover" value="{{itemsData.cover}}">
+
+                    <div class="btn-file-group">
+
+                        <button type="button" ng-show="coverFile[0] != null" class="btn btn-danger" ng-click="coverDelete()">
+                            <i class="glyphicon glyphicon-trash"></i> delete
+                        </button>
+
+                        <button type="button" ng-hide="coverFile[0] != null" class="btn btn-success"><i class="glyphicon glyphicon-picture"></i> Add
+                            <input type="file" ngf-select ng-model="coverFile" accept="image/*" value="">
+                        </button>
+
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-controller="locationCtrl">
             <label for="location" class="col-sm-2 control-label">Location </label>
             <div class="col-sm-8">
-                <input type="text" id="location" class="form-control" ng-model="itemsData.location" value="{{itemsData.location}}">
+                <input type="text" id="location" class="form-control" ng-model="itemsData.location" validator="required, gpsVal" ng-click="addLocation()" value="{{itemsData.location}}">
             </div>
         </div>
         <div class="form-group">
@@ -63,7 +79,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
-                <button type="submit" class="btn btn-success" ng-click="saveChange()"><i class="glyphicon glyphicon-saved"></i> Save Changes</button>
+                <button type="submit" class="btn btn-success" validation-submit="eventEdit" ng-click="saveChange()"><i class="glyphicon glyphicon-saved"></i> Save Changes</button>
             </div>
         </div>
 
